@@ -362,7 +362,36 @@ namespace Engie.PCC.Api.Tests.Tests
             result.Should().BeEquivalentTo(expectedResult);
         }
 
+        [Fact]
+        public void LoadIsLowerThanCombinedGeneration_OneTypeDifferentEfficiencies_ExpectMostEfficientDown()
+        {
+            var load = 300;
+            var fuels = Fuels.Create(12.5m, 50.8m, 60, 20);
+            var plants = new List<Powerplant>
+            {
+                Powerplant.Create("g1", PowerPlantType.GasFired, 0.75m, 10, 50),
+                Powerplant.Create("g2", PowerPlantType.GasFired, 0.51m, 100, 120),
+                Powerplant.Create("g3", PowerPlantType.GasFired, 0.51m, 100, 120),
+                Powerplant.Create("g4", PowerPlantType.GasFired, 0.51m, 100, 120)
+            };
 
+            // Act.
+            var service = GetProductionPlanService();
+            var result = service.Calculate(load, fuels, plants).Result;
+
+            // Assert.
+            result.Sum(p => p.Power).Should().Be(load);
+
+            var expectedResult = new List<PowerplantResult>
+            {
+                PowerplantResult.Create("g2", 100),
+                PowerplantResult.Create("g3", 100),
+                PowerplantResult.Create("g4", 100),
+                PowerplantResult.Create("g1", 0)
+            };
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
 
         [Fact]
         //Test values from dpettens
