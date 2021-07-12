@@ -1,0 +1,324 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Engie.PCC.Api</name>
+    </assembly>
+    <members>
+        <member name="M:Engie.PCC.Api.Controllers.ProductionPlanController.CalculateProductionPlanLoad(Engie.PCC.Api.Models.PayLoad)">
+            <summary>
+            Calculate the load for each powerplant.
+            </summary>
+            <param name="payload">The <see cref="T:Engie.PCC.Api.Models.PayLoad"/> object</param>
+            <returns> A list of <see cref="T:Engie.PCC.Api.Models.PowerplantResult"/> with the load to apply on each powerplant</returns>
+        </member>
+        <member name="T:Engie.PCC.Api.Middlewares.WebSocketMiddleware">
+            <summary>
+            middleware for handling incoming <see cref="T:System.Net.WebSockets.WebSocket"/> connections.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ApiError.Message">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ApiError.Errors">
+            <summary>
+            Optional, list of related errors
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ApiError.FullException">
+            <summary>
+            The full exception trace
+            </summary>
+        </member>
+        <member name="T:Engie.PCC.Api.Models.ComputedPowerplant">
+            <summary>
+            Internal object to store result of computation.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ComputedPowerplant.Powerplant">
+            <summary>
+            The <see cref="P:Engie.PCC.Api.Models.ComputedPowerplant.Powerplant"/>.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ComputedPowerplant.CostPerMWH">
+            <summary>
+            The computed cost per MWH
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ComputedPowerplant.MinAvailablePower">
+            <summary>
+            Gets the minimum power in MW the plant can generate.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ComputedPowerplant.MaxAvailablePower">
+            <summary>
+            Gets the maximum power in MW the plant can generate.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.ComputedPowerplant.ToProduce">
+            <summary>
+            The power in MW the plant should generate.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Fuels.GasEuroMWh">
+            <summary>
+            The price of gas per MWh
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Fuels.KerosineEuroMWh">
+            <summary>
+            The price of kerosine per MWh
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Fuels.Co2EuroTon">
+            <summary>
+            The price of emission allowances
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Fuels.Wind">
+            <summary>
+            Percentage of wind
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.PayLoad.Load">
+            <summary>
+            The load is the amount of energy (MWh) that need to be generated during one hour
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.PayLoad.Fuels">
+            <summary>
+            The cost of the fuels of each powerplant
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.PayLoad.Powerplants">
+            <summary>
+            The powerplants at disposal to generate the demanded load
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Powerplant.Name">
+            <summary>
+            The name of the powerplant
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Powerplant.Type">
+            <summary>
+            The type of the powerplant
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Powerplant.Efficiency">
+            <summary>
+            The efficiency at which they convert a MWh of fuel into a MWh of electrical energy.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Powerplant.MinPower">
+            <summary>
+            The maximum amount of power the powerplant can generate.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.Powerplant.MaxPower">
+            <summary>
+            The minimum amount of power the powerplant generates when switched on.
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.PowerplantResult.Name">
+            <summary>
+            The name of the powerplant
+            </summary>
+        </member>
+        <member name="P:Engie.PCC.Api.Models.PowerplantResult.Power">
+            <summary>
+            The load in MWH that the powerplant shoud supply
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Notifiers.LoadResultNotifier.NotifyLoadResultAsync(Engie.PCC.Api.Models.PayLoad,System.Collections.Generic.List{Engie.PCC.Api.Models.PowerplantResult})">
+            <summary>
+            Notification will be done using a background task ....
+            Other options like message bus, event hub can be used.
+            </summary>
+            <param name="payload"></param>
+            <param name="results"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.BroadcastService">
+            <summary>
+            Broadcast of messages to registered <see cref="T:System.Net.WebSockets.WebSocket">clients</see>.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.BroadcastService.Subscribe(System.Net.WebSockets.WebSocket)">
+            <summary>
+            Add the <see cref="T:System.Net.WebSockets.WebSocket">client</see> the subscribers list.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.BroadcastService.Unsubscribe(System.Net.WebSockets.WebSocket)">
+            <summary>
+            Remove the <see cref="T:System.Net.WebSockets.WebSocket">client</see> to subscribers list.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.BroadcastService.BroadcastMessageAsync(System.String)">
+            <summary>
+            Broadcasts a message to all subscribers.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.IPowerplantTypeCalculator.ComputeCostPerMWH(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <summary>
+            Compute cost per MWH
+            </summary>
+            <param name="fuels">a <see cref="T:Engie.PCC.Api.Models.Fuels"/> object containing price information</param>
+            <param name="powerplant">The <see cref="T:Engie.PCC.Api.Models.Powerplant"/> for which computation must be done</param>
+            <returns>The cost per MWH</returns>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.IPowerplantTypeCalculator.ComputeMinimumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <summary>
+            Compute the minimum MWH deliverable by the powerplant
+            </summary>
+            <param name="fuels">a <see cref="T:Engie.PCC.Api.Models.Fuels"/> object containing price information</param>
+            <param name="powerplant">The <see cref="T:Engie.PCC.Api.Models.Powerplant"/> for which computation must be done</param>
+            <returns>The minimal MWH deliveralbe</returns>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.IPowerplantTypeCalculator.ComputeMaximumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <summary>
+            Compute the maximum MWH deliverable by the powerplant
+            </summary>
+            <param name="fuels">a <see cref="T:Engie.PCC.Api.Models.Fuels"/> object containing price information</param>
+            <param name="powerplant">The <see cref="T:Engie.PCC.Api.Models.Powerplant"/> for which computation must be done</param>
+            <returns>The maxomal MWH deliveralbe</returns>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorException">
+            <summary>
+            Exception thrown by object implementing <see cref="T:Engie.PCC.Api.Services.Calculators.IPowerplantTypeCalculator"/> when powerplant type is invalid.
+            </summary>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorFactory">
+            <summary>
+            Factory using the flyweight pattern to provide the powerplant type related calcultor
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorFactory.GetCalculator(Engie.PCC.Api.Models.PowerPlantType)">
+            <summary>
+            Get the powerplant type related calcultor
+            </summary>
+            <param name="powerplantType">The type of the powerplant</param>
+            <returns>A object implementing the <see cref="T:Engie.PCC.Api.Services.Calculators.IPowerplantTypeCalculator"/> interface.</returns>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorGasfired">
+            <summary>
+            Dedicated calculator for Gas Fired powerplant
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorGasfired.ComputeCostPerMWH(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorGasfired.ComputeMinimumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorGasfired.ComputeMaximumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorTurbojet">
+            <summary>
+            Dedicated calculator for Turbojet powerplant
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorTurbojet.ComputeCostPerMWH(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorTurbojet.ComputeMinimumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorTurbojet.ComputeMaximumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorWindTurbine">
+            <summary>
+            Dedicated calculator for Wind Turbine powerplant
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorWindTurbine.ComputeCostPerMWH(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorWindTurbine.ComputeMinimumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.Calculators.PowerplantCalculatorWindTurbine.ComputeMaximumDeliverablePower(Engie.PCC.Api.Models.Fuels,Engie.PCC.Api.Models.Powerplant)">
+            <inheritdoc/>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Engie.PCC.Api.Services.Hosted.BackgroundTaskQueue" -->
+        <member name="M:Engie.PCC.Api.Services.IBroadcastService.Subscribe(System.Net.WebSockets.WebSocket)">
+            <summary>
+            Add the <see cref="T:System.Net.WebSockets.WebSocket">client</see> to the subscribers list.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.IBroadcastService.Unsubscribe(System.Net.WebSockets.WebSocket)">
+            <summary>
+            Remove the <see cref="T:System.Net.WebSockets.WebSocket">client</see> from the subscribers list.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.IBroadcastService.BroadcastMessageAsync(System.String)">
+            <summary>
+            Broadcasts a message to all subscribers.
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.IProductionPlanService.Calculate(System.Decimal,Engie.PCC.Api.Models.Fuels,System.Collections.Generic.IEnumerable{Engie.PCC.Api.Models.Powerplant})">
+            <summary>
+            Compute the load to apply on each powerplant
+            </summary>
+            <param name="load">The requested load</param>
+            <param name="fuels">Information about price</param>
+            <param name="powerPlants">A list of <see cref="T:Engie.PCC.Api.Models.Powerplant"/> to use for dispatching the requested load.</param>
+            <returns>A list of <see cref="T:Engie.PCC.Api.Models.PowerplantResult"/> containing the load to apply on each powerplant</returns>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.ProductionPlanService">
+            <summary>
+            Production Plan Service is responsible to compute the dispatching load on given powerplants
+            </summary>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.ProductionPlanService.Calculate(System.Decimal,Engie.PCC.Api.Models.Fuels,System.Collections.Generic.IEnumerable{Engie.PCC.Api.Models.Powerplant})">
+            <summary>
+            General assumption, computing all possibilities using step of 0.1MWH will result in millions of options.
+            Without a way to exclude a large range of options, computing time will be unreasonable.
+            The choosen way is to first look at most restritives options (minimum power deliverd when powerplant is switched on) and then compensate using the merit-order.
+            Finally, a try to power off some powerplants by cheapest alternatives is made.
+            </summary>
+            <param name="load">The requested load</param>
+            <param name="fuels">Information about price</param>
+            <param name="powerPlants">A list of <see cref="T:Engie.PCC.Api.Models.Powerplant"/> to use for dispatching the requested load.</param>
+            <returns>A list of <see cref="T:Engie.PCC.Api.Models.PowerplantResult"/> containing the load to apply on each powerplant</returns>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.ProductionPlanService.DispatchInitialLoad(System.Decimal,Engie.PCC.Api.Models.ComputedPowerplant[])">
+            <summary>
+            Initial power load dispatching. Apply the load on powerplants respecting the list order
+            </summary>
+            <param name="load">The power load to dispatch</param>
+            <param name="powerPlants">The list of <see cref="T:Engie.PCC.Api.Models.Powerplant"/></param>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.ProductionPlanService.Compensate(Engie.PCC.Api.Models.ComputedPowerplant[],System.Decimal)">
+            <summary>
+            Compensate the load, try to lowered most expansive powerplant at the benefit of cheapest.
+            </summary>
+            <param name="powerPlants">The list of <see cref="T:Engie.PCC.Api.Models.Powerplant"/></param>
+            <param name="amount">The amout of power to compensate</param>
+            <returns>Returns the remaining power whihc was not compensate.</returns>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.ProductionPlanService.AffineDispatchedLoad(Engie.PCC.Api.Models.ComputedPowerplant[])">
+            <summary>
+            From the most expansive to the cheapest powerplant, try to find an alternative allowing to down of the powerplant
+            </summary>
+            <param name="powerPlants">The list of <see cref="T:Engie.PCC.Api.Models.Powerplant"/></param>
+        </member>
+        <member name="M:Engie.PCC.Api.Services.ProductionPlanService.ComputeCostForLoad(System.Decimal,Engie.PCC.Api.Models.ComputedPowerplant[])">
+            <summary>
+            Compute the cost for the load using the <see cref="T:Engie.PCC.Api.Models.Powerplant"/> list.
+            </summary>
+            <param name="load"></param>
+            <param name="powerPlants">The list of <see cref="T:Engie.PCC.Api.Models.Powerplant"/></param>
+            <returns>The computed cost or -1 if the available power is less than the requested load</returns>
+            <remarks>Cost is take into account only if there are still some availability on the powerplant</remarks>
+        </member>
+        <member name="T:Engie.PCC.Api.Services.ProductionPlanServiceException">
+            <summary>
+            Exception thrown by the <see cref="T:Engie.PCC.Api.Services.ProductionPlanService"/> when something goes wrong
+            </summary>
+        </member>
+    </members>
+</doc>
