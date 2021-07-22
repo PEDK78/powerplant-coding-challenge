@@ -11,6 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Engie.PCC.Client", "client\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Soution Items", "Soution Items", "{85B3429E-03CD-4821-8E03-2DE21A804D16}"
 	ProjectSection(SolutionItems) = preProject
+		build.cake = build.cake
+		Directory.Build.props = Directory.Build.props
+		.config\dotnet-tools.json = .config\dotnet-tools.json
 		README.md = README.md
 	EndProjectSection
 EndProject

@@ -1,0 +1,9 @@
+﻿<Project>
+    <PropertyGroup>
+		<Authors>PEDK</Authors>
+        <Company>SatellIt</Company>
+        <Version>1.1.1</Version>
+        <AssemblyTitle>Engie coding challenge</AssemblyTitle>
+		<Description>Engie coding challenge API</Description>
+    </PropertyGroup>
+</Project>
